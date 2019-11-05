@@ -1,0 +1,9 @@
+#!/bin/bash
+. 00-common
+if  pip list | grep -q "qrcode" ; then
+    for f in `ls build/$name.*`; do
+        cat $f | gzip | base64 | qr  > $f.png 
+    done
+else
+    echo "pip install qrcode pillow"
+fi

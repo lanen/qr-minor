@@ -1,0 +1,3 @@
+#!/bin/bash
+name=my-test-file
+tarname=${name}.tar.gz

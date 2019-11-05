@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkfile -n 10k my-test-file
+echo `md5 -q my-test-file` > my-test-file.md5
+
+
+

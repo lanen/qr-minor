@@ -1,0 +1,12 @@
+#!/bin/bash
+. 00-common
+cd build
+cat ${name}.* > x${name}
+a=`md5 -q x${name}`
+b=`cat ../${name}.md5`
+if [ "$a" == "$b" ]; then
+    echo "same"
+else
+    echo "error"
+fi
+cd -

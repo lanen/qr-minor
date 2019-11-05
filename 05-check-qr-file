@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#pip install qrcode pillow image zxing
+
+function read_qr(){
+    name=$1
+code=$(cat <<-EOF
+#
+
+import zxing
+
+reader = zxing.BarCodeReader()
+
+barcode = reader.decode("$name")
+if barcode:
+    print(barcode.parsed)
+EOF
+)
+echo $(python -xc "$code")
+}
+
+for f in `ls build/*.png`; do
+    read_qr $f | base64 -D -o $f.txt.gz
+    gzip -S .gz -fd $f.txt.gz 
+done
+

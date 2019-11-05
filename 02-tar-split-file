@@ -1,0 +1,7 @@
+#!/bin/bash
+. 00-common
+tar -czvf $tarname $name
+mkdir -p build
+cd build
+split -b 1k ../$name ${name}.
+cd -
